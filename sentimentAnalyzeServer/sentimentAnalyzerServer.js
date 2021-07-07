@@ -1,6 +1,9 @@
 const express = require('express');
 const app = new express();
 const dotenv = require("dotenv");
+const bodyParser = require('body-parser');
+const url = require('url');
+const querystring = require('querystring');
 
 dotenv.config();
 
@@ -50,8 +53,8 @@ app.get("/",(req,res)=>{
 app.get("/url/emotion", (req,res) => {
 
     var analyzeParams = {
-        // 'url': req.url,
-        'url': "https://www.bbc.com/news/world-europe-57743233",
+        'url': req.query.url,
+        // 'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'emotion': {
             'limit': 3
@@ -90,7 +93,7 @@ app.get("/url/sentiment", (req,res) => {
 
     var analyzeParams = {
         // 'url': req.url,
-        'url': "https://www.bbc.com/news/world-europe-57743233",
+        'url': req.query.url,
         'features': {
           'sentiment': {
             'limit': 3
@@ -127,8 +130,8 @@ app.get("/url/sentiment", (req,res) => {
 app.get("/text/emotion", (req,res) => {
 
     var analyzeParams = {
-        // 'url': req.url,
-        'url': "https://www.bbc.com/news/world-europe-57743233",
+        'url': req.query.url,
+        // 'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'emotion': {
             'limit': 3
@@ -162,7 +165,7 @@ app.get("/text/sentiment", (req,res) => {
 
     var analyzeParams = {
         // 'url': req.url,
-        'url': "https://www.bbc.com/news/world-europe-57743233",
+        'url': req.query.url,
         'features': {
           'sentiment': {
             'limit': 3
