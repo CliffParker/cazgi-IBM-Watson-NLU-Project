@@ -50,7 +50,8 @@ app.get("/",(req,res)=>{
 app.get("/url/emotion", (req,res) => {
 
     var analyzeParams = {
-        'url': 'https://www.bbc.com/news/world-asia-57682290',
+        // 'url': req.url,
+        'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'emotion': {
             'limit': 3
@@ -64,7 +65,7 @@ app.get("/url/emotion", (req,res) => {
 
   ret2.then( (analysisResults) => {
     console.log(JSON.stringify(analysisResults.result, null, 2));
-    return res.send(JSON.stringify(analysisResults.result.emotion, null, 2));
+    return res.send(JSON.stringify(analysisResults.result.emotion.document, null, 2));
   })
   .catch(err => {
     console.log('error:', err);
@@ -88,7 +89,8 @@ app.get("/url/emotion", (req,res) => {
 app.get("/url/sentiment", (req,res) => {
 
     var analyzeParams = {
-        'url': 'https://www.bbc.com/news/world-asia-57682290',
+        // 'url': req.url,
+        'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'sentiment': {
             'limit': 3
@@ -102,7 +104,7 @@ app.get("/url/sentiment", (req,res) => {
 
   ret2.then( (analysisResults) => {
     console.log(JSON.stringify(analysisResults.result, null, 2));
-    return res.send(JSON.stringify(analysisResults.result.sentiment, null, 2));
+    return res.send(JSON.stringify(analysisResults.result.sentiment.document.label, null, 2));
   })
   .catch(err => {
     console.log('error:', err);
@@ -125,7 +127,8 @@ app.get("/url/sentiment", (req,res) => {
 app.get("/text/emotion", (req,res) => {
 
     var analyzeParams = {
-        'url': 'https://www.bbc.com/news/world-asia-57682290',
+        // 'url': req.url,
+        'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'emotion': {
             'limit': 3
@@ -158,7 +161,8 @@ app.get("/text/emotion", (req,res) => {
 app.get("/text/sentiment", (req,res) => {
 
     var analyzeParams = {
-        'url': 'https://www.bbc.com/news/world-asia-57682290',
+        // 'url': req.url,
+        'url': "https://www.bbc.com/news/world-europe-57743233",
         'features': {
           'sentiment': {
             'limit': 3
@@ -172,7 +176,7 @@ app.get("/text/sentiment", (req,res) => {
 
   ret2.then( (analysisResults) => {
     console.log(JSON.stringify(analysisResults.result, null, 2));
-    return res.send(JSON.stringify(analysisResults.result.sentiment.document, null, 2));
+    return res.send(JSON.stringify(analysisResults.result.sentiment.document.label, null, 2));
   })
   .catch(err => {
     console.log('error:', err);

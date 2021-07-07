@@ -33,18 +33,24 @@ class App extends React.Component {
     }
   }
 
+
+
+
+
   sendForSentimentAnalysis = () => {
     this.setState({sentiment:true});
     let ret = "";
-    let url = ".";
+    let url = "http://localhost:8080";
 
     if(this.state.mode === "url") {
       url = url+"/url/sentiment?url="+document.getElementById("textinput").value;
     } else {
       url = url+"/text/sentiment?text="+document.getElementById("textinput").value;
     }
+    // console.log(url);
     ret = axios.get(url);
     ret.then((response)=>{
+      console.log(response.data);
 
       //Include code here to check the sentiment and fomrat the data accordingly
 
@@ -55,16 +61,20 @@ class App extends React.Component {
       } else if (response.data === "negative"){
         output = <div style={{color:"red",fontSize:20}}>{response.data}</div>
       } else {
-        output = <div style={{color:"orange",fontSize:20}}>{response.data}</div>
+        output = <div style={{color:"yellow",fontSize:20}}>{response.data}</div>
       }
-      this.setState({sentimentOutput:output});
+      this.setState({sentimentOutput:output}); 
+      // ["response"]
     });
   }
+
+
+
 
   sendForEmotionAnalysis = () => {
     this.setState({sentiment:false});
     let ret = "";
-    let url = ".";
+    let url = "http://localhost:8080";
     if(this.state.mode === "url") {
       url = url+"/url/emotion?url="+document.getElementById("textinput").value;
     } else {
@@ -78,8 +88,15 @@ class App extends React.Component {
   }
   
 
+
+
+
+
+
   render() {
-    return (  
+    document.getElementsByTagName("title").innerHTML =  "Sentiment Analyzer";
+    return (
+
       <div className="App">
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
