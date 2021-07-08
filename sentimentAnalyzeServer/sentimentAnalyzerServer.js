@@ -130,8 +130,7 @@ app.get("/url/sentiment", (req,res) => {
 app.get("/text/emotion", (req,res) => {
 
     var analyzeParams = {
-        'url': req.query.url,
-        // 'url': "https://www.bbc.com/news/world-europe-57743233",
+        'text': req.query.text,
         'features': {
           'emotion': {
             'limit': 3
@@ -165,7 +164,7 @@ app.get("/text/sentiment", (req,res) => {
 
     var analyzeParams = {
         // 'url': req.url,
-        'url': req.query.url,
+        'text': req.query.text,
         'features': {
           'sentiment': {
             'limit': 3
